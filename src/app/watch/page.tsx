@@ -228,7 +228,7 @@ export default function WatchPage() {
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
                         <div className="absolute inset-4 rounded-full bg-gray-800 flex items-center justify-center">
                           <Image
-                            src="/nrg-logo.webp"
+                            src="/nrg-logo-red.png"
                             alt="NRG Radio Logo"
                             width={60}
                             height={60}
@@ -266,7 +266,7 @@ export default function WatchPage() {
                   <div className="text-center">
                     <div className="w-32 h-32 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center mx-auto mb-6 shadow-lg">
                       <Image
-                        src="/nrg-logo.webp"
+                        src="/nrg-logo-red.png"
                         alt="NRG Radio Logo"
                         width={80}
                         height={80}

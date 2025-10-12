@@ -1281,12 +1281,12 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
-"[project]/src/app/watch/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"[project]/src/app/listen/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
     "default",
-    ()=>WatchPage
+    ()=>ListenPage
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
@@ -1304,53 +1304,70 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function WatchPage() {
+function ListenPage() {
     _s();
     const [isPlaying, setIsPlaying] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [currentTime, setCurrentTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [duration, setDuration] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [volume, setVolume] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(50);
-    const [isFullscreen, setIsFullscreen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [viewerCount, setViewerCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(2156);
-    const [currentShow, setCurrentShow] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('Live Show');
+    const [listenerCount, setListenerCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1234);
+    const [currentShow, setCurrentShow] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('Live Music');
+    const [currentShowData, setCurrentShowData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [streamError, setStreamError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [audioElement, setAudioElement] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [schedule, setSchedule] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [scheduleLoading, setScheduleLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    // Initialize iframe player
+    // Initialize audio element
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "WatchPage.useEffect": ()=>{
-            // Listen for fullscreen changes
-            const handleFullscreenChange = {
-                "WatchPage.useEffect.handleFullscreenChange": ()=>{
-                    setIsFullscreen(!!document.fullscreenElement);
-                }
-            }["WatchPage.useEffect.handleFullscreenChange"];
-            document.addEventListener('fullscreenchange', handleFullscreenChange);
+        "ListenPage.useEffect": ()=>{
+            const audio = new Audio();
+            audio.crossOrigin = 'anonymous';
+            audio.preload = 'none';
+            setAudioElement(audio);
+            // Set up event listeners
+            audio.addEventListener('loadstart', {
+                "ListenPage.useEffect": ()=>setStreamError(false)
+            }["ListenPage.useEffect"]);
+            audio.addEventListener('error', {
+                "ListenPage.useEffect": ()=>setStreamError(true)
+            }["ListenPage.useEffect"]);
+            audio.addEventListener('timeupdate', {
+                "ListenPage.useEffect": ()=>setCurrentTime(audio.currentTime)
+            }["ListenPage.useEffect"]);
+            audio.addEventListener('durationchange', {
+                "ListenPage.useEffect": ()=>setDuration(audio.duration)
+            }["ListenPage.useEffect"]);
+            audio.addEventListener('play', {
+                "ListenPage.useEffect": ()=>setIsPlaying(true)
+            }["ListenPage.useEffect"]);
+            audio.addEventListener('pause', {
+                "ListenPage.useEffect": ()=>setIsPlaying(false)
+            }["ListenPage.useEffect"]);
             return ({
-                "WatchPage.useEffect": ()=>{
-                    document.removeEventListener('fullscreenchange', handleFullscreenChange);
+                "ListenPage.useEffect": ()=>{
+                    audio.pause();
+                    audio.src = '';
                 }
-            })["WatchPage.useEffect"];
+            })["ListenPage.useEffect"];
         }
-    }["WatchPage.useEffect"], []);
+    }["ListenPage.useEffect"], []);
     // Load stream data
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "WatchPage.useEffect": ()=>{
+        "ListenPage.useEffect": ()=>{
             const fetchStreamData = {
-                "WatchPage.useEffect.fetchStreamData": async ()=>{
+                "ListenPage.useEffect.fetchStreamData": async ()=>{
                     try {
-                        // Fetch viewer count
-                        const viewerResponse = await fetch((0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2f$streaming$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getApiUrl"])('listenerCount'));
-                        if (viewerResponse.ok) {
-                            const data = await viewerResponse.json();
-                            setViewerCount(data.count || 2156);
+                        // Fetch listener count
+                        const listenerResponse = await fetch((0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2f$streaming$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getApiUrl"])('listenerCount'));
+                        if (listenerResponse.ok) {
+                            const data = await listenerResponse.json();
+                            setListenerCount(data.count || 1234);
                         }
                         // Fetch current show
                         const showResponse = await fetch((0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2f$streaming$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getApiUrl"])('currentShow'));
                         if (showResponse.ok) {
                             const data = await showResponse.json();
-                            setCurrentShow(data.name || 'Live Show');
+                            setCurrentShow(data.name || 'Live Music');
                         }
                         // Fetch real schedule from API
                         const scheduleData = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$api$2d$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiUtils"].fetchShows();
@@ -1363,15 +1380,30 @@ function WatchPage() {
                         setScheduleLoading(false);
                     }
                 }
-            }["WatchPage.useEffect.fetchStreamData"];
+            }["ListenPage.useEffect.fetchStreamData"];
             fetchStreamData();
             const interval = setInterval(fetchStreamData, 30000) // Update every 30 seconds
             ;
             return ({
-                "WatchPage.useEffect": ()=>clearInterval(interval)
-            })["WatchPage.useEffect"];
+                "ListenPage.useEffect": ()=>clearInterval(interval)
+            })["ListenPage.useEffect"];
         }
-    }["WatchPage.useEffect"], []);
+    }["ListenPage.useEffect"], []);
+    // Update current show data when schedule changes
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ListenPage.useEffect": ()=>{
+            const currentShow = getCurrentShowOnAir();
+            if (currentShow) {
+                setCurrentShowData(currentShow);
+                setCurrentShow(currentShow.show_name);
+            } else {
+                setCurrentShowData(null);
+                setCurrentShow('Live Music');
+            }
+        }
+    }["ListenPage.useEffect"], [
+        schedule
+    ]);
     // Helper function to get today's shows
     const getTodaysShows = ()=>{
         const today = new Date().toLocaleDateString('en-US', {
@@ -1415,44 +1447,45 @@ function WatchPage() {
         }
         return '/shows/default-show.jpg';
     };
-    const togglePlay = ()=>{
-        // For iframe-based video players, we can't directly control play/pause
-        // The iframe handles its own controls
-        // This is just for visual feedback
-        setIsPlaying(!isPlaying);
+    // Helper function to get current show on air
+    const getCurrentShowOnAir = ()=>{
+        const today = new Date().toLocaleDateString('en-US', {
+            weekday: 'long'
+        });
+        const todaysShows = schedule.filter((show)=>show.day_of_week === today);
+        return todaysShows.find((show)=>isShowOnAir(show)) || null;
     };
-    const toggleFullscreen = ()=>{
-        const iframe = document.querySelector('iframe');
-        if (!iframe) return;
-        if (!isFullscreen) {
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen().then(()=>{
-                    setIsFullscreen(true);
-                }).catch((err)=>{
-                    console.error('Error attempting to enable fullscreen:', err);
-                });
-            }
+    const togglePlay = ()=>{
+        if (!audioElement) return;
+        if (isPlaying) {
+            audioElement.pause();
         } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen().then(()=>{
-                    setIsFullscreen(false);
-                }).catch((err)=>{
-                    console.error('Error attempting to exit fullscreen:', err);
+            // Set the audio source to the NRG Radio stream
+            audioElement.src = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2f$streaming$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getStreamUrl"])('audio');
+            audioElement.play().catch((error)=>{
+                console.error('Error playing audio:', error);
+                setStreamError(true);
+                // Try backup stream if primary fails
+                audioElement.src = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2f$streaming$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getStreamUrl"])('audio', true);
+                audioElement.play().catch((backupError)=>{
+                    console.error('Backup stream also failed:', backupError);
                 });
-            }
+            });
         }
     };
     const handleVolumeChange = (e)=>{
         const newVolume = parseInt(e.target.value);
         setVolume(newVolume);
-    // Volume control is handled by the iframe player
-    // This is just for visual feedback
+        if (audioElement) {
+            audioElement.volume = newVolume / 100;
+        }
     };
     const handleSeek = (e)=>{
         const newTime = parseInt(e.target.value);
         setCurrentTime(newTime);
-    // Seek control is handled by the iframe player
-    // This is just for visual feedback
+        if (audioElement && isFinite(audioElement.duration) && audioElement.duration > 0) {
+            audioElement.currentTime = newTime;
+        }
     };
     const formatTime = (seconds)=>{
         // Handle invalid or infinite duration (common with live streams)
@@ -1467,8 +1500,8 @@ function WatchPage() {
         className: "relative bg-black text-white min-h-screen",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Header$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                fileName: "[project]/src/app/watch/page.tsx",
-                lineNumber: 185,
+                fileName: "[project]/src/app/listen/page.tsx",
+                lineNumber: 205,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -1482,485 +1515,165 @@ function WatchPage() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                     className: "text-4xl md:text-6xl font-bold mb-6",
                                     children: [
-                                        "Watch ",
+                                        "Listen to ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-red-500",
-                                            children: "NRG RADIO LIVE STREAM"
+                                            children: "NRG Radio"
                                         }, void 0, false, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 192,
-                                            columnNumber: 21
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 212,
+                                            columnNumber: 25
                                         }, this)
                                     ]
                                 }, void 0, true, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 191,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 211,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-xl text-gray-300 max-w-3xl mx-auto",
-                                    children: "Experience NRG Radio like never before with our live video stream. Watch your favorite shows, see the hosts, and enjoy the full visual experience."
+                                    children: "Tune in to the hottest music, latest news, and engaging shows. Experience the best of Ugandan radio with NRG Radio Uganda."
                                 }, void 0, false, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 194,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 214,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
-                            fileName: "[project]/src/app/watch/page.tsx",
-                            lineNumber: 190,
+                            fileName: "[project]/src/app/listen/page.tsx",
+                            lineNumber: 210,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "max-w-6xl mx-auto bg-gray-900 rounded-2xl overflow-hidden shadow-2xl",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "relative ".concat(isFullscreen ? 'h-screen' : 'aspect-video', " bg-black"),
-                                    children: [
-                                        !streamError ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("iframe", {
-                                            src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2f$streaming$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getStreamUrl"])('video'),
-                                            className: "w-full h-full",
-                                            allow: "autoplay; encrypted-media; fullscreen; microphone; camera",
-                                            allowFullScreen: true,
-                                            title: "NRG Radio Live Video Stream",
-                                            onError: ()=>setStreamError(true),
-                                            onLoad: ()=>{
-                                                setIsLoading(false);
-                                                setStreamError(false);
-                                            },
-                                            sandbox: "allow-same-origin allow-scripts allow-popups allow-forms"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 206,
-                                            columnNumber: 17
-                                        }, this) : null,
-                                        isLoading && !streamError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center",
+                            className: "max-w-4xl mx-auto bg-gray-900 rounded-2xl p-8 shadow-2xl",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-col items-center space-y-8",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center",
+                                        children: currentShowData ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mb-4",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-center",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "relative",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-32 h-32 rounded-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 animate-pulse mb-6 mx-auto relative overflow-hidden",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 228,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "absolute inset-4 rounded-full bg-gray-800 flex items-center justify-center",
-                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                                        src: "/nrg-logo.webp",
-                                                                        alt: "NRG Radio Logo",
-                                                                        width: 60,
-                                                                        height: 60,
-                                                                        className: "w-15 h-15 opacity-80"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                                        lineNumber: 230,
-                                                                        columnNumber: 27
-                                                                    }, this)
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 229,
-                                                                    columnNumber: 25
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 227,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "space-y-2",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                    className: "text-2xl font-bold text-white mb-2 relative overflow-hidden",
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                            className: "relative z-10",
-                                                                            children: "Loading NRG RADIO LIVE STREAM..."
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                                            lineNumber: 243,
-                                                                            columnNumber: 27
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                                            lineNumber: 244,
-                                                                            columnNumber: 27
-                                                                        }, this)
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 242,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                    className: "text-gray-400 text-sm relative overflow-hidden",
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                            className: "relative z-10",
-                                                                            children: "Preparing your live stream experience"
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                                            lineNumber: 247,
-                                                                            columnNumber: 27
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                                            lineNumber: 248,
-                                                                            columnNumber: 27
-                                                                        }, this)
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 246,
-                                                                    columnNumber: 25
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 241,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "flex justify-center space-x-2 mt-6",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "w-2 h-2 bg-red-500 rounded-full animate-bounce"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 254,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "w-2 h-2 bg-red-500 rounded-full animate-bounce",
-                                                                    style: {
-                                                                        animationDelay: '0.1s'
-                                                                    }
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 255,
-                                                                    columnNumber: 25
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "w-2 h-2 bg-red-500 rounded-full animate-bounce",
-                                                                    style: {
-                                                                        animationDelay: '0.2s'
-                                                                    }
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 256,
-                                                                    columnNumber: 25
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 253,
-                                                            columnNumber: 23
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 225,
-                                                    columnNumber: 21
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                lineNumber: 224,
-                                                columnNumber: 19
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 223,
-                                            columnNumber: 17
-                                        }, this),
-                                        streamError ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-center",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-32 h-32 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center mx-auto mb-6 shadow-lg",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                            src: "/nrg-logo.webp",
-                                                            alt: "NRG Radio Logo",
-                                                            width: 80,
-                                                            height: 80,
-                                                            className: "w-20 h-20"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 268,
-                                                            columnNumber: 23
-                                                        }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 267,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                        className: "text-2xl font-bold mb-2",
-                                                        children: "NRG RADIO LIVE STREAM"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 276,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-gray-400 mb-4",
-                                                        children: currentShow
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 277,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center justify-center space-x-4 text-sm text-gray-300",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "flex items-center",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "w-2 h-2 bg-red-500 rounded-full mr-2"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                                        lineNumber: 280,
-                                                                        columnNumber: 25
-                                                                    }, this),
-                                                                    "Stream Error"
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 279,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: "•"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 283,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: "HD Quality"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 284,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: "•"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 285,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: [
-                                                                    viewerCount.toLocaleString(),
-                                                                    " viewers"
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 286,
-                                                                columnNumber: 23
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 278,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>setStreamError(false),
-                                                        className: "mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition-colors",
-                                                        children: "Retry Stream"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 288,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                lineNumber: 266,
-                                                columnNumber: 19
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 265,
-                                            columnNumber: 17
-                                        }, this) : null,
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-0 right-0 p-6 transition-opacity duration-300 ".concat(isLoading ? 'opacity-50' : 'opacity-100'),
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center space-x-4",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                    onClick: toggleFullscreen,
-                                                    className: "w-10 h-10 rounded bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition-colors",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                        className: "w-5 h-5",
-                                                        fill: "currentColor",
-                                                        viewBox: "0 0 24 24",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                            d: "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 307,
-                                                            columnNumber: 23
-                                                        }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 306,
-                                                        columnNumber: 21
-                                                    }, this)
+                                                className: "flex justify-center",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                                    src: getShowImage(currentShowData),
+                                                    alt: currentShowData.show_name,
+                                                    width: 600,
+                                                    height: 250,
+                                                    className: "w-full max-w-4xl h-64 rounded-lg object-cover"
                                                 }, void 0, false, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 302,
-                                                    columnNumber: 19
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 229,
+                                                    columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
-                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                lineNumber: 300,
-                                                columnNumber: 17
+                                                fileName: "[project]/src/app/listen/page.tsx",
+                                                lineNumber: 228,
+                                                columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 299,
-                                            columnNumber: 15
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 227,
+                                            columnNumber: 19
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-gray-400 mb-4",
+                                            children: [
+                                                "• ",
+                                                currentShow
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 239,
+                                            columnNumber: 19
                                         }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 203,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-6",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center justify-between mb-4",
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/listen/page.tsx",
+                                        lineNumber: 224,
+                                        columnNumber: 15
+                                    }, this),
+                                    currentShowData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center mb-4",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                        className: "text-2xl font-bold",
-                                                        children: "NRG RADIO LIVE STREAM"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 318,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-gray-400",
-                                                        children: "Live from Kampala, Uganda"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 319,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                lineNumber: 317,
-                                                columnNumber: 17
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-2xl font-bold text-white",
+                                                children: currentShowData.show_name
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/listen/page.tsx",
+                                                lineNumber: 247,
+                                                columnNumber: 19
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center space-x-4",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-gray-400 text-sm",
                                                 children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        className: "flex items-center space-x-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                className: "w-4 h-4",
-                                                                fill: "currentColor",
-                                                                viewBox: "0 0 24 24",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                    d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 324,
-                                                                    columnNumber: 23
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 323,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: "Like"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 326,
-                                                                columnNumber: 21
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 322,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        className: "flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                                className: "w-4 h-4",
-                                                                fill: "currentColor",
-                                                                viewBox: "0 0 24 24",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                    d: "M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                                    lineNumber: 330,
-                                                                    columnNumber: 23
-                                                                }, this)
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 329,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: "Share"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                                lineNumber: 332,
-                                                                columnNumber: 21
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 328,
-                                                        columnNumber: 19
-                                                    }, this)
+                                                    "Hosted by ",
+                                                    currentShowData.presenters || 'NRG Team'
                                                 ]
                                             }, void 0, true, {
-                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                lineNumber: 321,
-                                                columnNumber: 17
+                                                fileName: "[project]/src/app/listen/page.tsx",
+                                                lineNumber: 248,
+                                                columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
-                                        fileName: "[project]/src/app/watch/page.tsx",
-                                        lineNumber: 316,
+                                        fileName: "[project]/src/app/listen/page.tsx",
+                                        lineNumber: 246,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-center",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: togglePlay,
+                                            className: "w-20 h-20 rounded-full bg-red-600 hover:bg-red-700 flex items-center justify-center transition-colors shadow-lg",
+                                            children: isPlaying ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                className: "w-10 h-10",
+                                                fill: "currentColor",
+                                                viewBox: "0 0 24 24",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    d: "M6 4h4v16H6V4zm8 0h4v16h-4V4z"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 260,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/listen/page.tsx",
+                                                lineNumber: 259,
+                                                columnNumber: 21
+                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                className: "w-10 h-10 ml-1",
+                                                fill: "currentColor",
+                                                viewBox: "0 0 24 24",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                    d: "M8 5v14l11-7z"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 264,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/listen/page.tsx",
+                                                lineNumber: 263,
+                                                columnNumber: 21
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 254,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/listen/page.tsx",
+                                        lineNumber: 253,
                                         columnNumber: 15
                                     }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 315,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/app/watch/page.tsx",
-                            lineNumber: 201,
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/listen/page.tsx",
+                                lineNumber: 222,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/listen/page.tsx",
+                            lineNumber: 221,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1970,8 +1683,8 @@ function WatchPage() {
                                     className: "text-3xl font-bold text-center mb-8",
                                     children: "Today's Schedule"
                                 }, void 0, false, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 342,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 275,
                                     columnNumber: 13
                                 }, this),
                                 scheduleLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1982,20 +1695,20 @@ function WatchPage() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                                 className: "fas fa-radio text-4xl mb-4 block"
                                             }, void 0, false, {
-                                                fileName: "[project]/src/app/watch/page.tsx",
-                                                lineNumber: 346,
+                                                fileName: "[project]/src/app/listen/page.tsx",
+                                                lineNumber: 279,
                                                 columnNumber: 19
                                             }, this),
                                             "Loading today's schedule..."
                                         ]
                                     }, void 0, true, {
-                                        fileName: "[project]/src/app/watch/page.tsx",
-                                        lineNumber: 345,
+                                        fileName: "[project]/src/app/listen/page.tsx",
+                                        lineNumber: 278,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 344,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 277,
                                     columnNumber: 15
                                 }, this) : getTodaysShows().length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center py-12",
@@ -2006,29 +1719,29 @@ function WatchPage() {
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("i", {
                                                     className: "fas fa-calendar text-4xl mb-4 block"
                                                 }, void 0, false, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 353,
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 286,
                                                     columnNumber: 19
                                                 }, this),
                                                 "No shows scheduled for today"
                                             ]
                                         }, void 0, true, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 352,
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 285,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-gray-500",
                                             children: "Check back later for our schedule"
                                         }, void 0, false, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 356,
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 289,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 351,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 284,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8",
@@ -2048,30 +1761,30 @@ function WatchPage() {
                                                             height: 200,
                                                             className: "w-full h-48 object-cover transition-transform duration-300 cursor-pointer rounded-xl hover:scale-105"
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 367,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 300,
                                                             columnNumber: 25
                                                         }, this),
                                                         isOnAir && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse",
                                                             children: "LIVE"
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 375,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 308,
                                                             columnNumber: 27
                                                         }, this),
                                                         isUpcoming && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full",
                                                             children: "UPCOMING"
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 380,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 313,
                                                             columnNumber: 27
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 366,
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 299,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2081,40 +1794,40 @@ function WatchPage() {
                                                             className: "text-xl font-bold mb-2",
                                                             children: show.show_name
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 386,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 319,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                             className: "font-semibold text-red-500 text-lg",
                                                             children: show.time
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 387,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 320,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 385,
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 318,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, show.id || index, true, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 365,
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 298,
                                             columnNumber: 21
                                         }, this);
                                     })
                                 }, void 0, false, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 359,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 292,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
-                            fileName: "[project]/src/app/watch/page.tsx",
-                            lineNumber: 341,
+                            fileName: "[project]/src/app/listen/page.tsx",
+                            lineNumber: 274,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2124,16 +1837,16 @@ function WatchPage() {
                                     className: "text-3xl font-bold mb-6",
                                     children: "Download Our Mobile App"
                                 }, void 0, false, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 398,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 331,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-gray-400 mb-8 max-w-2xl mx-auto",
-                                    children: "Get the NRG Radio app for the best viewing experience on your mobile device"
+                                    children: "Get the NRG Radio app for the best listening experience on your mobile device"
                                 }, void 0, false, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 399,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 332,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2152,13 +1865,13 @@ function WatchPage() {
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                         d: "M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
                                                     }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 410,
+                                                        fileName: "[project]/src/app/listen/page.tsx",
+                                                        lineNumber: 343,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 409,
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 342,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2168,28 +1881,28 @@ function WatchPage() {
                                                             className: "text-xs text-gray-400",
                                                             children: "GET IT ON"
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 413,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 346,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "text-lg font-semibold",
                                                             children: "Google Play"
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 414,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 347,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 412,
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 345,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 403,
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 336,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2205,13 +1918,13 @@ function WatchPage() {
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                         d: "M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
                                                     }, void 0, false, {
-                                                        fileName: "[project]/src/app/watch/page.tsx",
-                                                        lineNumber: 425,
+                                                        fileName: "[project]/src/app/listen/page.tsx",
+                                                        lineNumber: 358,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 424,
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 357,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2221,73 +1934,73 @@ function WatchPage() {
                                                             className: "text-xs text-gray-400",
                                                             children: "Download on the"
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 428,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 361,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "text-lg font-semibold",
                                                             children: "App Store"
                                                         }, void 0, false, {
-                                                            fileName: "[project]/src/app/watch/page.tsx",
-                                                            lineNumber: 429,
+                                                            fileName: "[project]/src/app/listen/page.tsx",
+                                                            lineNumber: 362,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
-                                                    fileName: "[project]/src/app/watch/page.tsx",
-                                                    lineNumber: 427,
+                                                    fileName: "[project]/src/app/listen/page.tsx",
+                                                    lineNumber: 360,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "[project]/src/app/watch/page.tsx",
-                                            lineNumber: 418,
+                                            fileName: "[project]/src/app/listen/page.tsx",
+                                            lineNumber: 351,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
-                                    fileName: "[project]/src/app/watch/page.tsx",
-                                    lineNumber: 402,
+                                    fileName: "[project]/src/app/listen/page.tsx",
+                                    lineNumber: 335,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
-                            fileName: "[project]/src/app/watch/page.tsx",
-                            lineNumber: 397,
+                            fileName: "[project]/src/app/listen/page.tsx",
+                            lineNumber: 330,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
-                    fileName: "[project]/src/app/watch/page.tsx",
-                    lineNumber: 189,
+                    fileName: "[project]/src/app/listen/page.tsx",
+                    lineNumber: 209,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
-                fileName: "[project]/src/app/watch/page.tsx",
-                lineNumber: 187,
+                fileName: "[project]/src/app/listen/page.tsx",
+                lineNumber: 207,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                fileName: "[project]/src/app/watch/page.tsx",
-                lineNumber: 437,
+                fileName: "[project]/src/app/listen/page.tsx",
+                lineNumber: 371,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
-        fileName: "[project]/src/app/watch/page.tsx",
-        lineNumber: 184,
+        fileName: "[project]/src/app/listen/page.tsx",
+        lineNumber: 204,
         columnNumber: 5
     }, this);
 }
-_s(WatchPage, "tK3WKnAhdEbuP0GqTPMugj9jtl0=");
-_c = WatchPage;
+_s(ListenPage, "zAAD1+7uu5QViPEdiA4vAI7W9RM=");
+_c = ListenPage;
 var _c;
-__turbopack_context__.k.register(_c, "WatchPage");
+__turbopack_context__.k.register(_c, "ListenPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
 ]);
 
-//# sourceMappingURL=src_c642330a._.js.map
+//# sourceMappingURL=src_a5a5c66b._.js.map

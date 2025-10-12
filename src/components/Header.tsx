@@ -94,7 +94,7 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
               <Image
                 alt="NRG Radio Uganda logo"
                 className="h-16 w-auto"
-                src="/nrg-logo.webp"
+                src="/nrg-logo-red.png"
                 width={64}
                 height={64}
               />

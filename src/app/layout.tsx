@@ -122,7 +122,7 @@ export default function RootLayout({
               "alternateName": ["NRG Radio", "NRG 106.5", "NRG Radio 106.5 FM"],
               "description": "The Number One Name in Music - Live from Nakasero, Kampala, Uganda",
               "url": "https://nrgug-website.vercel.app",
-              "logo": "https://nrgug-website.vercel.app/nrg-logo.webp",
+              "logo": "https://nrgug-website.vercel.app/nrg-logo-red.png",
               "image": "https://nrgug-website.vercel.app/og-image.jpg",
               "foundingDate": "2020",
               "areaServed": {
