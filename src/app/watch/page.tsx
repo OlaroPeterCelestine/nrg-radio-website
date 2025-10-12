@@ -189,7 +189,7 @@ export default function WatchPage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Watch <span className="text-red-500">NRG TV</span>
+              Watch <span className="text-red-500">NRG RADIO LIVE STREAM</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Experience NRG Radio like never before with our live video stream. 
@@ -240,7 +240,7 @@ export default function WatchPage() {
                       {/* Loading Text with Shimmer */}
                       <div className="space-y-2">
                         <h3 className="text-2xl font-bold text-white mb-2 relative overflow-hidden">
-                          <span className="relative z-10">Loading NRG TV...</span>
+                          <span className="relative z-10">Loading NRG RADIO LIVE STREAM...</span>
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
                         </h3>
                         <p className="text-gray-400 text-sm relative overflow-hidden">
@@ -273,7 +273,7 @@ export default function WatchPage() {
                         className="w-20 h-20"
                       />
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">NRG TV Live Stream</h3>
+                    <h3 className="text-2xl font-bold mb-2">NRG RADIO LIVE STREAM</h3>
                     <p className="text-gray-400 mb-4">{currentShow}</p>
                     <div className="flex items-center justify-center space-x-4 text-sm text-gray-300">
                       <span className="flex items-center">
@@ -315,7 +315,7 @@ export default function WatchPage() {
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-2xl font-bold">NRG TV Live Stream</h2>
+                  <h2 className="text-2xl font-bold">NRG RADIO LIVE STREAM</h2>
                   <p className="text-gray-400">Live from Kampala, Uganda</p>
                 </div>
                 <div className="flex items-center space-x-4">
