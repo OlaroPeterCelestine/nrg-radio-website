@@ -7,6 +7,15 @@ import Footer from '@/components/Footer'
 import { STREAMING_CONFIG, getStreamUrl, getApiUrl } from '@/config/streaming'
 import { apiUtils } from '@/lib/api-utils'
 
+interface Show {
+  id: number
+  show_name: string
+  image: string
+  time: string
+  presenters: string
+  day_of_week: string
+}
+
 export default function WatchPage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -17,7 +26,7 @@ export default function WatchPage() {
   const [currentShow, setCurrentShow] = useState('Live Show')
   const [streamError, setStreamError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [schedule, setSchedule] = useState([])
+  const [schedule, setSchedule] = useState<Show[]>([])
   const [scheduleLoading, setScheduleLoading] = useState(true)
 
 
@@ -70,13 +79,13 @@ export default function WatchPage() {
   }, [])
 
   // Helper function to get today's shows
-  const getTodaysShows = () => {
+  const getTodaysShows = (): Show[] => {
     const today = new Date().toLocaleDateString('en-US', { weekday: 'long' })
     return schedule.filter(show => show.day_of_week === today)
   }
 
   // Helper function to check if show is currently on air
-  const isShowOnAir = (show) => {
+  const isShowOnAir = (show: Show) => {
     const now = new Date()
     const currentTime = now.toTimeString().slice(0, 5) // HH:MM format
     
@@ -94,7 +103,7 @@ export default function WatchPage() {
   }
 
   // Helper function to check if show is upcoming today
-  const isShowUpcoming = (show) => {
+  const isShowUpcoming = (show: Show) => {
     const now = new Date()
     const currentTime = now.toTimeString().slice(0, 5) // HH:MM format
     
@@ -109,7 +118,7 @@ export default function WatchPage() {
   }
 
   // Helper function to get show image
-  const getShowImage = (show) => {
+  const getShowImage = (show: Show) => {
     if (show.image && show.image.startsWith('http')) {
       return show.image
     }

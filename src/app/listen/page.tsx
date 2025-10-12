@@ -7,6 +7,15 @@ import Footer from '@/components/Footer'
 import { STREAMING_CONFIG, getStreamUrl, getApiUrl } from '@/config/streaming'
 import { apiUtils } from '@/lib/api-utils'
 
+interface Show {
+  id: number
+  show_name: string
+  image: string
+  time: string
+  presenters: string
+  day_of_week: string
+}
+
 export default function ListenPage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -14,10 +23,10 @@ export default function ListenPage() {
   const [volume, setVolume] = useState(50)
   const [listenerCount, setListenerCount] = useState(1234)
   const [currentShow, setCurrentShow] = useState('Live Music')
-  const [currentShowData, setCurrentShowData] = useState(null)
+  const [currentShowData, setCurrentShowData] = useState<Show | null>(null)
   const [streamError, setStreamError] = useState(false)
   const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null)
-  const [schedule, setSchedule] = useState([])
+  const [schedule, setSchedule] = useState<Show[]>([])
   const [scheduleLoading, setScheduleLoading] = useState(true)
 
 
@@ -96,7 +105,7 @@ export default function ListenPage() {
   }
 
   // Helper function to check if show is currently on air
-  const isShowOnAir = (show) => {
+  const isShowOnAir = (show: Show) => {
     const now = new Date()
     const currentTime = now.toTimeString().slice(0, 5) // HH:MM format
     
@@ -114,7 +123,7 @@ export default function ListenPage() {
   }
 
   // Helper function to check if show is upcoming today
-  const isShowUpcoming = (show) => {
+  const isShowUpcoming = (show: Show) => {
     const now = new Date()
     const currentTime = now.toTimeString().slice(0, 5) // HH:MM format
     
@@ -129,7 +138,7 @@ export default function ListenPage() {
   }
 
   // Helper function to get show image
-  const getShowImage = (show) => {
+  const getShowImage = (show: Show) => {
     if (show.image && show.image.startsWith('http')) {
       return show.image
     }
@@ -137,7 +146,7 @@ export default function ListenPage() {
   }
 
   // Helper function to get current show on air
-  const getCurrentShowOnAir = () => {
+  const getCurrentShowOnAir = (): Show | null => {
     const today = new Date().toLocaleDateString('en-US', { weekday: 'long' })
     const todaysShows = schedule.filter(show => show.day_of_week === today)
     
