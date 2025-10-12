@@ -976,6 +976,10 @@ body.has-sticky-players {
   width: 100%;
 }
 
+.w-\[95vw\] {
+  width: 95vw;
+}
+
 .min-w-0 {
   min-width: 0;
 }
@@ -2840,6 +2844,10 @@ body.has-sticky-players {
     display: none;
   }
 
+  .md\:w-\[80vw\] {
+    width: 80vw;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2868,6 +2876,11 @@ body.has-sticky-players {
   .md\:py-36 {
     padding-top: 9rem;
     padding-bottom: 9rem;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .md\:text-2xl {

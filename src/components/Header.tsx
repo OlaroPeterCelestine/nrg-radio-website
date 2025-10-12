@@ -87,7 +87,7 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
       {/* Main Header */}
       <header>
         {/* Navbar */}
-        <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[80vw] max-w-[1300px] flex items-center justify-between px-4 py-0.5 z-20 border border-gray-800 bg-black/75 rounded-md backdrop-blur-sm">
+        <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95vw] md:w-[80vw] max-w-[1300px] flex items-center justify-between px-6 md:px-4 py-0.5 z-20 border border-gray-800 bg-black/75 rounded-md backdrop-blur-sm">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center">
@@ -140,12 +140,12 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
           </div>
 
           {/* Mobile Right Side - Player Buttons + Menu */}
-          <div className="md:hidden flex items-center space-x-1">
+          <div className="md:hidden flex items-center space-x-2">
             {/* Player Buttons - Mobile */}
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-2">
               <Link
                 href="/listen"
-                className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-2 py-2 rounded-lg transition-colors duration-200 text-xs font-semibold"
+                className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-colors duration-200 text-xs font-semibold"
                 title="Listen Live"
               >
                 <span>Listen</span>
@@ -155,7 +155,7 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
               </Link>
               <Link
                 href="/watch"
-                className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-2 py-2 rounded-lg transition-colors duration-200 text-xs font-semibold"
+                className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors duration-200 text-xs font-semibold"
                 title="Watch Live"
               >
                 <span>Watch</span>
