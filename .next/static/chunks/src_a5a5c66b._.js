@@ -1551,73 +1551,60 @@ function ListenPage() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "text-center",
-                                        children: currentShowData ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "mb-4",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex justify-center",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                    src: getShowImage(currentShowData),
-                                                    alt: currentShowData.show_name,
+                                                    src: currentShowData ? getShowImage(currentShowData) : '/nrg-logo-red.png',
+                                                    alt: currentShowData ? currentShowData.show_name : 'NRG Radio Live Music',
                                                     width: 600,
                                                     height: 250,
                                                     className: "w-full max-w-4xl h-64 rounded-lg object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 229,
-                                                    columnNumber: 23
+                                                    lineNumber: 227,
+                                                    columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/listen/page.tsx",
-                                                lineNumber: 228,
-                                                columnNumber: 21
+                                                lineNumber: 226,
+                                                columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 227,
-                                            columnNumber: 19
-                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-400 mb-4",
-                                            children: [
-                                                "• ",
-                                                currentShow
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 239,
-                                            columnNumber: 19
+                                            lineNumber: 225,
+                                            columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/listen/page.tsx",
                                         lineNumber: 224,
                                         columnNumber: 15
                                     }, this),
-                                    currentShowData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "text-center mb-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                 className: "text-2xl font-bold text-white",
-                                                children: currentShowData.show_name
+                                                children: currentShowData ? currentShowData.show_name : 'Live Music'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/listen/page.tsx",
-                                                lineNumber: 247,
-                                                columnNumber: 19
+                                                lineNumber: 240,
+                                                columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-gray-400 text-sm",
-                                                children: [
-                                                    "Hosted by ",
-                                                    currentShowData.presenters || 'NRG Team'
-                                                ]
-                                            }, void 0, true, {
+                                                children: currentShowData ? "Hosted by ".concat(currentShowData.presenters || 'NRG Team') : 'NRG Radio Uganda'
+                                            }, void 0, false, {
                                                 fileName: "[project]/src/app/listen/page.tsx",
-                                                lineNumber: 248,
-                                                columnNumber: 19
+                                                lineNumber: 243,
+                                                columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/listen/page.tsx",
-                                        lineNumber: 246,
-                                        columnNumber: 17
+                                        lineNumber: 239,
+                                        columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-center justify-center",
@@ -1632,12 +1619,12 @@ function ListenPage() {
                                                     d: "M6 4h4v16H6V4zm8 0h4v16h-4V4z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 260,
+                                                    lineNumber: 256,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/listen/page.tsx",
-                                                lineNumber: 259,
+                                                lineNumber: 255,
                                                 columnNumber: 21
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                 className: "w-10 h-10 ml-1",
@@ -1647,22 +1634,22 @@ function ListenPage() {
                                                     d: "M8 5v14l11-7z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 264,
+                                                    lineNumber: 260,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/listen/page.tsx",
-                                                lineNumber: 263,
+                                                lineNumber: 259,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 254,
+                                            lineNumber: 250,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/listen/page.tsx",
-                                        lineNumber: 253,
+                                        lineNumber: 249,
                                         columnNumber: 15
                                     }, this)
                                 ]
@@ -1684,7 +1671,7 @@ function ListenPage() {
                                     children: "Today's Schedule"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/listen/page.tsx",
-                                    lineNumber: 275,
+                                    lineNumber: 271,
                                     columnNumber: 13
                                 }, this),
                                 scheduleLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1696,19 +1683,19 @@ function ListenPage() {
                                                 className: "fas fa-radio text-4xl mb-4 block"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/listen/page.tsx",
-                                                lineNumber: 279,
+                                                lineNumber: 275,
                                                 columnNumber: 19
                                             }, this),
                                             "Loading today's schedule..."
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/listen/page.tsx",
-                                        lineNumber: 278,
+                                        lineNumber: 274,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/listen/page.tsx",
-                                    lineNumber: 277,
+                                    lineNumber: 273,
                                     columnNumber: 15
                                 }, this) : getTodaysShows().length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center py-12",
@@ -1720,14 +1707,14 @@ function ListenPage() {
                                                     className: "fas fa-calendar text-4xl mb-4 block"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 286,
+                                                    lineNumber: 282,
                                                     columnNumber: 19
                                                 }, this),
                                                 "No shows scheduled for today"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 285,
+                                            lineNumber: 281,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1735,13 +1722,13 @@ function ListenPage() {
                                             children: "Check back later for our schedule"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 289,
+                                            lineNumber: 285,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/listen/page.tsx",
-                                    lineNumber: 284,
+                                    lineNumber: 280,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8",
@@ -1762,7 +1749,7 @@ function ListenPage() {
                                                             className: "w-full h-48 object-cover transition-transform duration-300 cursor-pointer rounded-xl hover:scale-105"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 300,
+                                                            lineNumber: 296,
                                                             columnNumber: 25
                                                         }, this),
                                                         isOnAir && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1770,7 +1757,7 @@ function ListenPage() {
                                                             children: "LIVE"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 308,
+                                                            lineNumber: 304,
                                                             columnNumber: 27
                                                         }, this),
                                                         isUpcoming && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1778,13 +1765,13 @@ function ListenPage() {
                                                             children: "UPCOMING"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 313,
+                                                            lineNumber: 309,
                                                             columnNumber: 27
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 299,
+                                                    lineNumber: 295,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1795,7 +1782,7 @@ function ListenPage() {
                                                             children: show.show_name
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 319,
+                                                            lineNumber: 315,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1803,31 +1790,31 @@ function ListenPage() {
                                                             children: show.time
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 320,
+                                                            lineNumber: 316,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 318,
+                                                    lineNumber: 314,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, show.id || index, true, {
                                             fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 298,
+                                            lineNumber: 294,
                                             columnNumber: 21
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/listen/page.tsx",
-                                    lineNumber: 292,
+                                    lineNumber: 288,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/listen/page.tsx",
-                            lineNumber: 274,
+                            lineNumber: 270,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1838,7 +1825,7 @@ function ListenPage() {
                                     children: "Download Our Mobile App"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/listen/page.tsx",
-                                    lineNumber: 331,
+                                    lineNumber: 327,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1846,7 +1833,7 @@ function ListenPage() {
                                     children: "Get the NRG Radio app for the best listening experience on your mobile device"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/listen/page.tsx",
-                                    lineNumber: 332,
+                                    lineNumber: 328,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1866,12 +1853,12 @@ function ListenPage() {
                                                         d: "M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/listen/page.tsx",
-                                                        lineNumber: 343,
+                                                        lineNumber: 339,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 342,
+                                                    lineNumber: 338,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1882,7 +1869,7 @@ function ListenPage() {
                                                             children: "GET IT ON"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 346,
+                                                            lineNumber: 342,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1890,19 +1877,19 @@ function ListenPage() {
                                                             children: "Google Play"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 347,
+                                                            lineNumber: 343,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 345,
+                                                    lineNumber: 341,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 336,
+                                            lineNumber: 332,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1919,12 +1906,12 @@ function ListenPage() {
                                                         d: "M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/listen/page.tsx",
-                                                        lineNumber: 358,
+                                                        lineNumber: 354,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 357,
+                                                    lineNumber: 353,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1935,7 +1922,7 @@ function ListenPage() {
                                                             children: "Download on the"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 361,
+                                                            lineNumber: 357,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1943,31 +1930,31 @@ function ListenPage() {
                                                             children: "App Store"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/listen/page.tsx",
-                                                            lineNumber: 362,
+                                                            lineNumber: 358,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/listen/page.tsx",
-                                                    lineNumber: 360,
+                                                    lineNumber: 356,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/listen/page.tsx",
-                                            lineNumber: 351,
+                                            lineNumber: 347,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/listen/page.tsx",
-                                    lineNumber: 335,
+                                    lineNumber: 331,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/listen/page.tsx",
-                            lineNumber: 330,
+                            lineNumber: 326,
                             columnNumber: 11
                         }, this)
                     ]
@@ -1983,7 +1970,7 @@ function ListenPage() {
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Footer$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/app/listen/page.tsx",
-                lineNumber: 371,
+                lineNumber: 367,
                 columnNumber: 7
             }, this)
         ]

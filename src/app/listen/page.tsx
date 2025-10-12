@@ -222,32 +222,28 @@ export default function ListenPage() {
             <div className="flex flex-col items-center space-y-8">
               {/* Station Info */}
               <div className="text-center">
-                
-                {currentShowData ? (
-                  <div className="mb-4">
-                    <div className="flex justify-center">
-                      <Image
-                        src={getShowImage(currentShowData)}
-                        alt={currentShowData.show_name}
-                        width={600}
-                        height={250}
-                        className="w-full max-w-4xl h-64 rounded-lg object-cover"
-                      />
-                    </div>
+                <div className="mb-4">
+                  <div className="flex justify-center">
+                    <Image
+                      src={currentShowData ? getShowImage(currentShowData) : '/nrg-logo-red.png'}
+                      alt={currentShowData ? currentShowData.show_name : 'NRG Radio Live Music'}
+                      width={600}
+                      height={250}
+                      className="w-full max-w-4xl h-64 rounded-lg object-cover"
+                    />
                   </div>
-                ) : (
-                  <p className="text-gray-400 mb-4">• {currentShow}</p>
-                )}
-                
+                </div>
               </div>
 
               {/* Show Name */}
-              {currentShowData && (
-                <div className="text-center mb-4">
-                  <h3 className="text-2xl font-bold text-white">{currentShowData.show_name}</h3>
-                  <p className="text-gray-400 text-sm">Hosted by {currentShowData.presenters || 'NRG Team'}</p>
-                </div>
-              )}
+              <div className="text-center mb-4">
+                <h3 className="text-2xl font-bold text-white">
+                  {currentShowData ? currentShowData.show_name : 'Live Music'}
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  {currentShowData ? `Hosted by ${currentShowData.presenters || 'NRG Team'}` : 'NRG Radio Uganda'}
+                </p>
+              </div>
 
               {/* Main Controls */}
               <div className="flex items-center justify-center">
