@@ -139,44 +139,46 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
             </Link>
           </div>
 
-          {/* Player Buttons - Mobile */}
-          <div className="md:hidden flex items-center space-x-2">
-            <Link
-              href="/listen"
-              className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-colors duration-200 text-sm font-semibold"
-              title="Listen Live"
-            >
-              <span>Listen</span>
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </Link>
-            <Link
-              href="/watch"
-              className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors duration-200 text-sm font-semibold"
-              title="Watch Live"
-            >
-              <span>Watch</span>
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5l-1 1v1h8v-1l-1-1h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V5h18v11z"/>
-              </svg>
-            </Link>
-          </div>
+          {/* Mobile Right Side - Player Buttons + Menu */}
+          <div className="md:hidden flex items-center space-x-1">
+            {/* Player Buttons - Mobile */}
+            <div className="flex items-center space-x-1">
+              <Link
+                href="/listen"
+                className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-2 py-2 rounded-lg transition-colors duration-200 text-xs font-semibold"
+                title="Listen Live"
+              >
+                <span>Listen</span>
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </Link>
+              <Link
+                href="/watch"
+                className="flex items-center space-x-1 bg-gray-700 hover:bg-gray-600 text-white px-2 py-2 rounded-lg transition-colors duration-200 text-xs font-semibold"
+                title="Watch Live"
+              >
+                <span>Watch</span>
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5l-1 1v1h8v-1l-1-1h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V5h18v11z"/>
+                </svg>
+              </Link>
+            </div>
 
-          {/* Mobile Toggle */}
-          <button
-            id="menu-toggle"
-            className="md:hidden text-white text-2xl focus:outline-none p-2 hover:bg-gray-800 rounded-lg transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+            {/* Mobile Toggle */}
+            <button
+              id="menu-toggle"
+              className="text-white text-2xl focus:outline-none p-2 hover:bg-gray-800 rounded-lg transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle mobile menu"
             >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
               {isMobileMenuOpen ? (
                 <path
                   strokeLinecap="round"
@@ -194,6 +196,7 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
               )}
             </svg>
           </button>
+          </div>
 
         </nav>
 
