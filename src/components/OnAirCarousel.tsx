@@ -85,7 +85,7 @@ export default function OnAirCarousel() {
       console.error('💥 Error fetching shows:', error)
       
       // Retry logic for timeout errors
-      if (retryCount < 2 && error.message && error.message.includes('timed out')) {
+      if (retryCount < 2 && error instanceof Error && error.message && error.message.includes('timed out')) {
         console.warn(`⏰ Retrying in ${(retryCount + 1) * 2} seconds...`)
         setTimeout(() => {
           fetchShows(retryCount + 1)

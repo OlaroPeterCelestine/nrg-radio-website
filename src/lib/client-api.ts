@@ -48,7 +48,7 @@ export async function clientFetch(endpoint: string, options: RequestInit = {}) {
   } catch (error) {
     clearTimeout(timeoutId);
     
-    if (error.name === 'AbortError') {
+    if (error instanceof Error && error.name === 'AbortError') {
       throw new Error(`API request timed out after ${CLIENT_API_CONFIG.TIMEOUT}ms`);
     }
     
