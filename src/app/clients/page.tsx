@@ -33,7 +33,23 @@ export default function ClientsPage() {
       
       const data = await apiUtils.fetchClients()
       console.log('✅ Clients data received:', data)
-      setClients(data || [])
+      
+      // If we have clients, duplicate them for smooth animation
+      if (data && data.length > 0) {
+        // Duplicate clients to ensure smooth continuous animation
+        const duplicatedClients = [...data, ...data, ...data]
+        setClients(duplicatedClients)
+      } else {
+        // Fallback clients for testing
+        const fallbackClients = [
+          { id: 1, name: 'Sample Client 1', image: '/default-client.png', description: 'Trusted partner' },
+          { id: 2, name: 'Sample Client 2', image: '/default-client.png', description: 'Business partner' },
+          { id: 3, name: 'Sample Client 3', image: '/default-client.png', description: 'Media partner' },
+          { id: 4, name: 'Sample Client 4', image: '/default-client.png', description: 'Marketing partner' },
+          { id: 5, name: 'Sample Client 5', image: '/default-client.png', description: 'Technology partner' },
+        ]
+        setClients([...fallbackClients, ...fallbackClients, ...fallbackClients])
+      }
     } catch (error) {
       console.error('💥 Error fetching clients:', error)
       setError('Failed to load clients. Please try again later.')
@@ -126,56 +142,65 @@ export default function ClientsPage() {
         ) : (
           <>
             {/* Stats */}
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center bg-gray-900 rounded-full px-6 py-3 border border-gray-800">
+                <i className="fas fa-building text-red-500 mr-3"></i>
+                <span className="text-white font-semibold">
+                  {clients.length} Trusted Partners
+                </span>
+              </div>
+            </div>
 
-            {/* Clients Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {clients.map((client) => (
-                <div
-                  key={client.id}
-                  className="bg-black border border-gray-800 rounded-xl overflow-hidden hover:border-gray-700 transition-colors group"
-                >
-                  <div className="p-6">
-                    <div className="flex items-center justify-center mb-4">
-                      <div className="w-24 h-24 bg-gray-900 border border-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
-                        <Image
-                          src={getImageSrc(client)}
-                          alt={client.name}
-                          width={96}
-                          height={96}
-                          className="w-full h-full object-contain"
-                        />
+            {/* Clients Sliding Carousel */}
+            <div className="relative overflow-hidden w-full border border-gray-700 rounded-lg">
+              <div className="clients-carousel">
+                {clients.map((client, index) => (
+                  <div
+                    key={`${client.id}-${index}`}
+                    className="flex-shrink-0 mx-4 w-80"
+                  >
+                    <div className="bg-black border border-gray-800 rounded-xl overflow-hidden hover:border-gray-700 transition-colors group h-64">
+                      <div className="p-6 h-full flex flex-col">
+                        <div className="flex items-center justify-center mb-4">
+                          <div className="w-20 h-20 bg-gray-900 border border-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
+                            <Image
+                              src={getImageSrc(client)}
+                              alt={client.name}
+                              width={80}
+                              height={80}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        </div>
+                        
+                        <h3 className="text-lg font-bold text-center mb-2 group-hover:text-red-400 transition-colors">
+                          {client.name}
+                        </h3>
+                        
+                        {client.description && (
+                          <p className="text-gray-300 text-sm text-center mb-4 line-clamp-2 flex-grow">
+                            {client.description}
+                          </p>
+                        )}
+                        
+                        <div className="text-center mt-auto">
+                          {client.website && (
+                            <a
+                              href={client.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center text-red-500 hover:text-red-400 text-sm font-medium transition-colors"
+                            >
+                              Visit Website
+                              <i className="fas fa-external-link-alt ml-2"></i>
+                            </a>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-center mb-2 group-hover:text-red-400 transition-colors">
-                      {client.name}
-                    </h3>
-                    
-                    {client.description && (
-                      <p className="text-gray-300 text-sm text-center mb-4 line-clamp-3">
-                        {client.description}
-                      </p>
-                    )}
-                    
-                    <div className="text-center">
-                      <div className="text-xs text-gray-500 mb-3">
-                      </div>
-                      
-                      {client.website && (
-                        <a
-                          href={client.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-red-500 hover:text-red-400 text-sm font-medium transition-colors"
-                        >
-                          Visit Website
-                          <i className="fas fa-external-link-alt ml-2"></i>
-                        </a>
-                      )}
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Call to Action */}

@@ -196,6 +196,36 @@
   }
 }
 
+/* Clients sliding animation */
+@keyframes slide-right-to-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide-right-to-left {
+  animation: slide-right-to-left 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-slide-right-to-left:hover {
+  animation-play-state: paused;
+}
+
+/* Ensure the animation works even with few items */
+.clients-carousel {
+  display: flex;
+  animation: slide-right-to-left 30s linear infinite;
+  will-change: transform;
+}
+
+.clients-carousel:hover {
+  animation-play-state: paused;
+}
+
 .slider {
   width: 100%;
   height: var(--height);

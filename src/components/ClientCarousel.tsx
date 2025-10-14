@@ -29,14 +29,36 @@ export default function ClientCarousel() {
 
       console.log('API clients data received:', data)
       console.log('Number of API clients:', data?.length || 0)
-      // Update with API data if successful
+      
+      // Update with API data if successful, duplicate for smooth animation
       if (data && data.length > 0) {
-        setClients(data)
+        // Duplicate clients multiple times for seamless continuous animation
+        const duplicatedClients = [...data, ...data, ...data, ...data]
+        setClients(duplicatedClients)
+      } else {
+        // Fallback clients for testing
+        const fallbackClients = [
+          { id: 1, name: 'Sample Client 1', image: '/default-client.png', link: '#' },
+          { id: 2, name: 'Sample Client 2', image: '/default-client.png', link: '#' },
+          { id: 3, name: 'Sample Client 3', image: '/default-client.png', link: '#' },
+          { id: 4, name: 'Sample Client 4', image: '/default-client.png', link: '#' },
+          { id: 5, name: 'Sample Client 5', image: '/default-client.png', link: '#' },
+          { id: 6, name: 'Sample Client 6', image: '/default-client.png', link: '#' },
+        ]
+        setClients([...fallbackClients, ...fallbackClients, ...fallbackClients, ...fallbackClients])
       }
     } catch (error) {
       console.error('Error fetching clients:', error)
-      // No fallback data - keep empty array
-      setClients([])
+      // Fallback clients for testing
+      const fallbackClients = [
+        { id: 1, name: 'Sample Client 1', image: '/default-client.png', link: '#' },
+        { id: 2, name: 'Sample Client 2', image: '/default-client.png', link: '#' },
+        { id: 3, name: 'Sample Client 3', image: '/default-client.png', link: '#' },
+        { id: 4, name: 'Sample Client 4', image: '/default-client.png', link: '#' },
+        { id: 5, name: 'Sample Client 5', image: '/default-client.png', link: '#' },
+        { id: 6, name: 'Sample Client 6', image: '/default-client.png', link: '#' },
+      ]
+      setClients([...fallbackClients, ...fallbackClients, ...fallbackClients, ...fallbackClients])
     }
   }
 
@@ -82,40 +104,44 @@ export default function ClientCarousel() {
             <p className="text-gray-500">Check back later for our client partners</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
-            {clients.slice(0, 6).map((client) => (
-              <div
-                key={client.id}
-                className="flex items-center justify-center p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-              >
-                {client.link ? (
-                  <a
-                    href={client.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <Image
-                      src={getImageSrc(client)}
-                      alt={client.name || `Client ${client.id}`}
-                      width={120}
-                      height={90}
-                      className="max-h-20 max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
-                      title={client.name || `Client ${client.id}`}
-                    />
-                  </a>
-                ) : (
-                  <Image
-                    src={getImageSrc(client)}
-                    alt={client.name || `Client ${client.id}`}
-                    width={120}
-                    height={90}
-                    className="max-h-20 max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
-                    title={client.name || `Client ${client.id}`}
-                  />
-                )}
-              </div>
-            ))}
+          <div className="relative overflow-hidden">
+            <div className="clients-carousel">
+              {clients.map((client, index) => (
+                <div
+                  key={`${client.id}-${index}`}
+                  className="flex-shrink-0 mx-4"
+                >
+                  <div className="flex items-center justify-center p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group w-48 h-24">
+                    {client.link ? (
+                      <a
+                        href={client.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full h-full flex items-center justify-center"
+                      >
+                        <Image
+                          src={getImageSrc(client)}
+                          alt={client.name || `Client ${client.id}`}
+                          width={120}
+                          height={90}
+                          className="max-h-16 max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                          title={client.name || `Client ${client.id}`}
+                        />
+                      </a>
+                    ) : (
+                      <Image
+                        src={getImageSrc(client)}
+                        alt={client.name || `Client ${client.id}`}
+                        width={120}
+                        height={90}
+                        className="max-h-16 max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        title={client.name || `Client ${client.id}`}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
