@@ -4,6 +4,13 @@ Allow: /
 # Sitemap
 Sitemap: https://nrgug-website.vercel.app/sitemap.xml
 
+# Allow favicon and icon files
+Allow: /favicon.ico
+Allow: /favicon-16x16.png
+Allow: /favicon-32x32.png
+Allow: /favicon.svg
+Allow: /manifest.json
+
 # Disallow admin and login pages from indexing
 Disallow: /login
 Disallow: /admin/
