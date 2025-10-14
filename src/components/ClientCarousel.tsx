@@ -33,7 +33,8 @@ export default function ClientCarousel() {
       // Update with API data if successful, duplicate for smooth animation
       if (data && data.length > 0) {
         // Duplicate clients multiple times for seamless continuous animation
-        const duplicatedClients = [...data, ...data, ...data, ...data]
+        // We need at least 2 sets for the -100% animation to work perfectly
+        const duplicatedClients = [...data, ...data]
         setClients(duplicatedClients)
       } else {
         // Fallback clients for testing
@@ -45,7 +46,7 @@ export default function ClientCarousel() {
           { id: 5, name: 'Sample Client 5', image: '/default-client.png', link: '#' },
           { id: 6, name: 'Sample Client 6', image: '/default-client.png', link: '#' },
         ]
-        setClients([...fallbackClients, ...fallbackClients, ...fallbackClients, ...fallbackClients])
+        setClients([...fallbackClients, ...fallbackClients])
       }
     } catch (error) {
       console.error('Error fetching clients:', error)
@@ -58,7 +59,7 @@ export default function ClientCarousel() {
         { id: 5, name: 'Sample Client 5', image: '/default-client.png', link: '#' },
         { id: 6, name: 'Sample Client 6', image: '/default-client.png', link: '#' },
       ]
-      setClients([...fallbackClients, ...fallbackClients, ...fallbackClients, ...fallbackClients])
+      setClients([...fallbackClients, ...fallbackClients])
     }
   }
 
@@ -105,7 +106,7 @@ export default function ClientCarousel() {
           </div>
         ) : (
           <div className="relative overflow-hidden">
-            <div className="clients-carousel">
+            <div className="clients-carousel-continuous">
               {clients.map((client, index) => (
                 <div
                   key={`${client.id}-${index}`}

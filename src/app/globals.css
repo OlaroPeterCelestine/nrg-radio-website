@@ -220,9 +220,31 @@
   display: flex;
   animation: slide-right-to-left 30s linear infinite;
   will-change: transform;
+  width: max-content;
 }
 
 .clients-carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Alternative animation for better repetition */
+@keyframes slide-continuous {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.clients-carousel-continuous {
+  display: flex;
+  animation: slide-continuous 60s linear infinite;
+  will-change: transform;
+  width: max-content;
+}
+
+.clients-carousel-continuous:hover {
   animation-play-state: paused;
 }
 
