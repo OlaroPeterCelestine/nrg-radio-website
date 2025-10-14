@@ -71,12 +71,17 @@ export default function ListenPage() {
 
         // Fetch real schedule from API
         const scheduleData = await apiUtils.fetchShows()
+        console.log('📊 Listen Page - Schedule data received:', scheduleData)
         if (scheduleData) {
           setSchedule(scheduleData)
-          setScheduleLoading(false)
+        } else {
+          console.log('⚠️ Listen Page - No schedule data received')
+          setSchedule([])
         }
+        setScheduleLoading(false)
       } catch (error) {
         console.error('Error fetching stream data:', error)
+        setSchedule([])
         setScheduleLoading(false)
       }
     }
@@ -98,10 +103,30 @@ export default function ListenPage() {
     }
   }, [schedule])
 
-  // Helper function to get today's shows
+  // Helper function to get today's shows - individual day shows
   const getTodaysShows = () => {
-    const today = new Date().toLocaleDateString('en-US', { weekday: 'long' })
-    return schedule.filter(show => show.day_of_week === today)
+    const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' })
+
+    console.log('🔍 Listen Page - Debug Info:')
+    console.log('📅 Current day:', currentDay)
+    console.log('📊 Total schedule length:', schedule.length)
+    console.log('📋 All shows:', schedule.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
+
+    let filteredShows: Show[] = []
+    
+    // Handle grouped weekdays
+    if (['Monday', 'Tuesday', 'Wednesday', 'Thursday'].includes(currentDay)) {
+      filteredShows = schedule.filter(show => show.day_of_week === 'Monday-Thursday')
+      console.log('📝 Filtering for grouped weekdays: Monday-Thursday')
+    } else {
+      filteredShows = schedule.filter(show => show.day_of_week === currentDay)
+      console.log('📝 Filtering for specific day:', currentDay)
+    }
+    
+    console.log('✅ Filtered shows result:', filteredShows.length, 'shows for', currentDay)
+    console.log('📝 Filtered shows:', filteredShows.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
+
+    return filteredShows
   }
 
   // Helper function to check if show is currently on air

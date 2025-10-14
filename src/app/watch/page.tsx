@@ -63,12 +63,17 @@ export default function WatchPage() {
 
         // Fetch real schedule from API
         const scheduleData = await apiUtils.fetchShows()
+        console.log('📊 Watch Page - Schedule data received:', scheduleData)
         if (scheduleData) {
           setSchedule(scheduleData)
-          setScheduleLoading(false)
+        } else {
+          console.log('⚠️ Watch Page - No schedule data received')
+          setSchedule([])
         }
+        setScheduleLoading(false)
       } catch (error) {
         console.error('Error fetching stream data:', error)
+        setSchedule([])
         setScheduleLoading(false)
       }
     }
@@ -78,10 +83,30 @@ export default function WatchPage() {
     return () => clearInterval(interval)
   }, [])
 
-  // Helper function to get today's shows
+  // Helper function to get today's shows - individual day shows
   const getTodaysShows = (): Show[] => {
-    const today = new Date().toLocaleDateString('en-US', { weekday: 'long' })
-    return schedule.filter(show => show.day_of_week === today)
+    const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' })
+
+    console.log('🔍 Watch Page - Debug Info:')
+    console.log('📅 Current day:', currentDay)
+    console.log('📊 Total schedule length:', schedule.length)
+    console.log('📋 All shows:', schedule.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
+
+    let filteredShows: Show[] = []
+    
+    // Handle grouped weekdays
+    if (['Monday', 'Tuesday', 'Wednesday', 'Thursday'].includes(currentDay)) {
+      filteredShows = schedule.filter(show => show.day_of_week === 'Monday-Thursday')
+      console.log('📝 Filtering for grouped weekdays: Monday-Thursday')
+    } else {
+      filteredShows = schedule.filter(show => show.day_of_week === currentDay)
+      console.log('📝 Filtering for specific day:', currentDay)
+    }
+    
+    console.log('✅ Filtered shows result:', filteredShows.length, 'shows for', currentDay)
+    console.log('📝 Filtered shows:', filteredShows.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
+
+    return filteredShows
   }
 
   // Helper function to check if show is currently on air
@@ -160,6 +185,34 @@ export default function WatchPage() {
     setVolume(newVolume)
     // Volume control is handled by the iframe player
     // This is just for visual feedback
+  }
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'NRG Radio Uganda - Live Stream',
+      text: 'Watch NRG Radio Uganda live stream - The Number One Name in Music',
+      url: window.location.href
+    }
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData)
+      } else {
+        // Fallback: Copy to clipboard
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      }
+    } catch (error) {
+      console.error('Error sharing:', error)
+      // Fallback: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      } catch (clipboardError) {
+        console.error('Error copying to clipboard:', clipboardError)
+        alert('Unable to share. Please copy the URL manually.')
+      }
+    }
   }
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -243,10 +296,10 @@ export default function WatchPage() {
                           <span className="relative z-10">Loading NRG RADIO LIVE STREAM...</span>
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
                         </h3>
-                        <p className="text-gray-400 text-sm relative overflow-hidden">
+                        <div className="text-gray-400 text-sm relative overflow-hidden">
                           <span className="relative z-10">Preparing your live stream experience</span>
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-                        </p>
+                        </div>
                       </div>
                       
                       {/* Loading Dots */}
@@ -319,13 +372,10 @@ export default function WatchPage() {
                   <p className="text-gray-400">Live from Kampala, Uganda</p>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <button className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
-                    <span>Like</span>
-                  </button>
-                  <button className="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors">
+                  <button 
+                    onClick={handleShare}
+                    className="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors"
+                  >
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
                     </svg>

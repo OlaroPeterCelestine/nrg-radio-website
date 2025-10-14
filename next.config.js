@@ -4,6 +4,10 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    // Increase timeout for image optimization
+    unoptimized: false,
+    loader: 'default',
+    domains: [],
     remotePatterns: [
       {
         protocol: 'https',
@@ -128,6 +132,12 @@ const nextConfig = {
         {
           protocol: 'https',
           hostname: 'pub-1a0cc46c23f84b8ebf3f69e9b90b4314.r2.dev',
+          port: '',
+          pathname: '/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'via.placeholder.com',
           port: '',
           pathname: '/**',
         },

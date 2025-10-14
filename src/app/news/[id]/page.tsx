@@ -97,6 +97,34 @@ export default function NewsStoryPage() {
     }
   }
 
+  const handleShare = async () => {
+    const shareData = {
+      title: article?.title || 'NRG Radio Uganda News',
+      text: article?.story?.substring(0, 100) + '...' || 'Read the latest news from NRG Radio Uganda',
+      url: window.location.href
+    }
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData)
+      } else {
+        // Fallback: Copy to clipboard
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      }
+    } catch (error) {
+      console.error('Error sharing:', error)
+      // Fallback: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      } catch (clipboardError) {
+        console.error('Error copying to clipboard:', clipboardError)
+        alert('Unable to share. Please copy the URL manually.')
+      }
+    }
+  }
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -310,7 +338,10 @@ export default function NewsStoryPage() {
                 <button className="text-gray-400 hover:text-red-500 transition-colors">
                   <i className="fab fa-linkedin text-xl"></i>
                 </button>
-                <button className="text-gray-400 hover:text-red-500 transition-colors">
+                <button 
+                  onClick={handleShare}
+                  className="text-gray-400 hover:text-red-500 transition-colors"
+                >
                   <i className="fas fa-share text-xl"></i>
                 </button>
               </div>

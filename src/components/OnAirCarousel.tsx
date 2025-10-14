@@ -16,13 +16,15 @@ interface Show {
 export default function OnAirCarousel() {
   const [shows, setShows] = useState<Show[]>([])
   const [loading, setLoading] = useState(true)
+  const [usingFallback, setUsingFallback] = useState(false)
   
   // Get current day and map to our day filter options
+  // For homepage, show Monday-Thursday grouped shows for weekdays
   const getCurrentDayFilter = () => {
     const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' })
     
     if (['Monday', 'Tuesday', 'Wednesday', 'Thursday'].includes(currentDay)) {
-      return 'weekdays'
+      return 'Monday-Thursday' // Show grouped weekday shows
     } else if (currentDay === 'Friday') {
       return 'Friday'
     } else if (currentDay === 'Saturday') {
@@ -31,20 +33,25 @@ export default function OnAirCarousel() {
       return 'Sunday'
     }
     
-    return 'weekdays' // fallback
+    return 'Monday-Thursday' // fallback to grouped weekdays
   }
   
   const [selectedDay, setSelectedDay] = useState<string>(getCurrentDayFilter())
 
   useEffect(() => {
+    console.log('🔄 OnAirCarousel - Component mounted, fetching shows...')
     fetchShows()
     
-    // Set up auto-refresh every minute to update when shows end
+    // Set up auto-refresh every 5 minutes to update when shows end
     const interval = setInterval(() => {
+      console.log('⏰ OnAirCarousel - Auto-refresh triggered')
       fetchShows()
-    }, 60000) // Refresh every 60 seconds
+    }, 300000) // Refresh every 5 minutes (300 seconds)
     
-    return () => clearInterval(interval)
+    return () => {
+      console.log('🧹 OnAirCarousel - Component unmounting, clearing interval')
+      clearInterval(interval)
+    }
   }, [])
 
   useEffect(() => {
@@ -56,9 +63,9 @@ export default function OnAirCarousel() {
     }
   }, [shows, selectedDay])
 
-  const fetchShows = async () => {
+  const fetchShows = async (retryCount = 0) => {
     try {
-      console.log('🎯 Fetching shows from API... (Cache-busted)')
+      console.log(`🎯 Fetching shows from API... (Attempt ${retryCount + 1})`)
       setLoading(true)
       
       // Force fresh data by adding timestamp
@@ -73,11 +80,83 @@ export default function OnAirCarousel() {
         return acc
       }, {} as Record<string, number>) || {})
       setShows(data || []) // Show all available shows
+      setUsingFallback(false) // Reset fallback state on success
     } catch (error) {
       console.error('💥 Error fetching shows:', error)
+      
+      // Retry logic for timeout errors
+      if (retryCount < 2 && error.message && error.message.includes('timed out')) {
+        console.warn(`⏰ Retrying in ${(retryCount + 1) * 2} seconds...`)
+        setTimeout(() => {
+          fetchShows(retryCount + 1)
+        }, (retryCount + 1) * 2000) // Exponential backoff: 2s, 4s
+        return
+      }
+      
+      // Use fallback data after retries or on other errors
+      console.warn('⚠️ Using fallback data due to API error')
+      const fallbackShows = getFallbackShows()
+      setShows(fallbackShows)
+      setUsingFallback(true) // Set fallback state
     } finally {
-      setLoading(false)
+      if (retryCount === 0) { // Only set loading false on first attempt
+        setLoading(false)
+      }
     }
+  }
+
+  // Fallback data when API fails
+  const getFallbackShows = (): Show[] => {
+    return [
+      {
+        id: 1,
+        show_name: "Breakfast show",
+        time: "06:00 - 10:00",
+        presenters: "Prim,Eka, dj Beats, Bigboy Shaque",
+        image: "https://via.placeholder.com/400x200/ef4444/ffffff?text=Breakfast+Show",
+        day_of_week: "Monday-Thursday"
+      },
+      {
+        id: 2,
+        show_name: "Warm up mix",
+        time: "10:00 - 11:00",
+        presenters: "DJ Mix Master",
+        image: "https://via.placeholder.com/400x200/8b5cf6/ffffff?text=Warm+Up+Mix",
+        day_of_week: "Monday-Thursday"
+      },
+      {
+        id: 3,
+        show_name: "AM show",
+        time: "11:00 - 14:00",
+        presenters: "Crysto Panda, City Girl, Khuhani",
+        image: "https://via.placeholder.com/400x200/06b6d4/ffffff?text=AM+Show",
+        day_of_week: "Monday-Thursday"
+      },
+      {
+        id: 4,
+        show_name: "Warm up mix",
+        time: "14:00 - 15:00",
+        presenters: "DJ Mix Master",
+        image: "https://via.placeholder.com/400x200/8b5cf6/ffffff?text=Warm+Up+Mix",
+        day_of_week: "Monday-Thursday"
+      },
+      {
+        id: 5,
+        show_name: "Transit show",
+        time: "15:00 - 19:00",
+        presenters: "Salta, Mc Benjhi, Eyo Marcus",
+        image: "https://via.placeholder.com/400x200/f59e0b/ffffff?text=Transit+Show",
+        day_of_week: "Monday-Thursday"
+      },
+      {
+        id: 6,
+        show_name: "Circle show",
+        time: "19:00 - 23:00",
+        presenters: "Etania, DjVXFaisal, King Hanny",
+        image: "https://via.placeholder.com/400x200/10b981/ffffff?text=Circle+Show",
+        day_of_week: "Monday-Thursday"
+      }
+    ]
   }
 
   // Function to check if a show is currently on air or upcoming
@@ -133,11 +212,13 @@ export default function OnAirCarousel() {
   const getFilteredShows = () => {
     let filteredShows: Show[] = []
     
-    console.log('🔍 Filtering shows for selectedDay:', selectedDay)
-    console.log('📋 All shows:', shows.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
+    console.log('🔍 OnAirCarousel - Filtering shows for selectedDay:', selectedDay)
+    console.log('📋 OnAirCarousel - All shows:', shows.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
     
-    if (selectedDay === 'weekdays') {
-      filteredShows = shows.filter(show => ['Monday', 'Tuesday', 'Wednesday', 'Thursday'].includes(show.day_of_week))
+    if (selectedDay === 'Monday-Thursday') {
+      // Show grouped weekday shows (represents Mon-Thu)
+      filteredShows = shows.filter(show => show.day_of_week === 'Monday-Thursday')
+      console.log('📅 OnAirCarousel - Filtering for Monday-Thursday grouped shows')
     } else if (selectedDay === 'Saturday') {
       filteredShows = shows.filter(show => show.day_of_week === 'Saturday')
     } else if (selectedDay === 'Sunday') {
@@ -149,60 +230,46 @@ export default function OnAirCarousel() {
       filteredShows = []
     }
     
-    console.log('✅ Filtered shows result:', filteredShows.length, 'shows for', selectedDay)
-    console.log('📝 Filtered shows:', filteredShows.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
+    console.log('✅ OnAirCarousel - Filtered shows result:', filteredShows.length, 'shows for', selectedDay)
+    console.log('📝 OnAirCarousel - Filtered shows:', filteredShows.map(s => ({ id: s.id, name: s.show_name, day: s.day_of_week })))
     
-    // Show all shows for the selected day - no time filtering
+    // Remove duplicates by show ID and day
+    const uniqueShows = filteredShows.filter((show, index, self) => 
+      index === self.findIndex(s => s.id === show.id && s.day_of_week === show.day_of_week)
+    )
     
-    // Sort shows in order: Saturday → Sunday → Mon-Thu → Friday
-    return filteredShows
-      .sort((a, b) => {
-        // Create fixed day order: Saturday → Sunday → Mon-Thu → Friday
-        const dayOrder = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-        
-        const aDayIndex = dayOrder.indexOf(a.day_of_week)
-        const bDayIndex = dayOrder.indexOf(b.day_of_week)
-        
-        if (aDayIndex !== bDayIndex) {
-          return aDayIndex - bDayIndex
-        }
-        
-        // Then sort by start time within the same day
-        const aStartTime = a.time.includes(' - ') ? a.time.split(' - ')[0] : a.time
-        const bStartTime = b.time.includes(' - ') ? b.time.split(' - ')[0] : b.time
-        return aStartTime.localeCompare(bStartTime)
-      })
-      .slice(0, filteredShows.length)
+    console.log('🔍 OnAirCarousel - After deduplication:', uniqueShows.length, 'unique shows')
+    
+    // Sort shows by start time within the same day
+    const sortedShows = uniqueShows.sort((a, b) => {
+      const aStartTime = a.time.includes(' - ') ? a.time.split(' - ')[0] : a.time
+      const bStartTime = b.time.includes(' - ') ? b.time.split(' - ')[0] : b.time
+      return aStartTime.localeCompare(bStartTime)
+    })
+    
+    console.log('🔄 OnAirCarousel - Final sorted shows:', sortedShows.map(s => ({ id: s.id, name: s.show_name, time: s.time })))
+    
+    return sortedShows
   }
 
   const getUniqueDays = () => {
     const days = shows.map(show => show.day_of_week)
     const uniqueDays = Array.from(new Set(days))
     
-    const today = new Date().getDay()
-    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    
-    // Check for each day group
-    const hasWeekdays = uniqueDays.some(day => ['Monday', 'Tuesday', 'Wednesday', 'Thursday'].includes(day))
-    const hasSaturday = uniqueDays.includes('Saturday')
-    const hasSunday = uniqueDays.includes('Sunday')
-    const hasFriday = uniqueDays.includes('Friday')
-    
     const groupedDays = []
     
-    // Always show in order: Saturday → Sunday → Mon-Thu → Friday
-    // But highlight current day
-    if (hasSaturday) {
+    // Check for each day and add them in order
+    if (uniqueDays.includes('Monday-Thursday')) {
+      groupedDays.push('Monday-Thursday')
+    }
+    if (uniqueDays.includes('Friday')) {
+      groupedDays.push('Friday')
+    }
+    if (uniqueDays.includes('Saturday')) {
       groupedDays.push('Saturday')
     }
-    if (hasSunday) {
+    if (uniqueDays.includes('Sunday')) {
       groupedDays.push('Sunday')
-    }
-    if (hasWeekdays) {
-      groupedDays.push('weekdays')
-    }
-    if (hasFriday) {
-      groupedDays.push('Friday')
     }
     
     return groupedDays
@@ -222,8 +289,8 @@ export default function OnAirCarousel() {
     if (isValidImageUrl(show.image)) {
       return show.image
     }
-    // Fallback to a default image or placeholder
-    return '/shows/default-show.jpg'
+    // Use a more reliable fallback image that won't timeout
+    return 'https://via.placeholder.com/400x200/1f2937/ffffff?text=NRG+Radio'
   }
 
   return (
@@ -231,11 +298,16 @@ export default function OnAirCarousel() {
       <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 max-w-7xl mx-auto gap-4">
         <div>
           <h1 className="text-3xl font-bold">On Air</h1>
+          {usingFallback && (
+            <p className="text-yellow-500 text-sm mt-1">
+              ⚠️ Showing cached schedule (API temporarily unavailable)
+            </p>
+          )}
         </div>
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
           {/* Day Filter */}
           <div className="flex flex-wrap gap-2">
-            {['weekdays', 'Friday', 'Saturday', 'Sunday'].map((day) => {
+            {getUniqueDays().map((day) => {
               const isSelected = selectedDay === day
               
               return (
@@ -248,7 +320,7 @@ export default function OnAirCarousel() {
                       : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                   }`}
                 >
-                  {day === 'weekdays' ? 'Mon-Thu' : day === 'Friday' ? 'Fri' : day === 'Saturday' ? 'Sat' : day === 'Sunday' ? 'Sun' : day}
+                  {day === 'Monday-Thursday' ? 'Mon-Thu' : day === 'Friday' ? 'Fri' : day === 'Saturday' ? 'Sat' : day === 'Sunday' ? 'Sun' : day}
                 </button>
               )
             })}
@@ -271,12 +343,13 @@ export default function OnAirCarousel() {
               No shows available at the moment
             </div>
             <p className="text-gray-500">Check back later for our schedule</p>
+            <p className="text-gray-600 text-sm mt-2">If this persists, there may be a connection issue</p>
           </div>
         ) : getFilteredShows().length === 0 ? (
           <div className="text-center py-12">
             <div className="text-gray-400 text-lg mb-4">
               <i className="fas fa-calendar text-4xl mb-4 block"></i>
-              No shows scheduled for {selectedDay === 'all' ? 'this period' : selectedDay}
+              No shows scheduled for {selectedDay === 'Monday-Thursday' ? 'Mon-Thu' : selectedDay}
             </div>
             <p className="text-gray-500">Check back later or try a different day</p>
             <div className="mt-4 text-sm text-gray-600">
@@ -287,15 +360,17 @@ export default function OnAirCarousel() {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
-            {getFilteredShows().map((show) => {
+            {getFilteredShows().map((show, index) => {
               // Only show LIVE/UPCOMING status for shows on the current day
               const currentDay = new Date().toLocaleDateString('en-US', { weekday: 'long' })
               const isCurrentDay = show.day_of_week === currentDay
               const isCurrentlyOnAir = isCurrentDay && isShowOnAirOrUpcoming(show)
               const isUpcoming = isCurrentDay && isShowUpcomingToday(show)
               
+              console.log(`🎭 OnAirCarousel - Rendering show ${index + 1}:`, { id: show.id, name: show.show_name, day: show.day_of_week })
+              
               return (
-                <div key={show.id} className="group">
+                <div key={`${show.id}-${show.day_of_week}-${index}`} className="group">
                   <div className="relative">
                     <Image
                       src={getImageSrc(show)}
@@ -303,6 +378,11 @@ export default function OnAirCarousel() {
                       width={400}
                       height={200}
                       className="w-full h-48 object-cover transition-transform duration-300 cursor-pointer rounded-xl hover:scale-105"
+                      onError={(e) => {
+                        console.warn('Image failed to load, using fallback:', show.show_name)
+                        e.currentTarget.src = 'https://via.placeholder.com/400x200/1f2937/ffffff?text=NRG+Radio'
+                      }}
+                      loading="lazy"
                     />
                     {isCurrentlyOnAir && (
                       <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">

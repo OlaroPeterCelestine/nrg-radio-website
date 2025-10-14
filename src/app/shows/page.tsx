@@ -99,6 +99,34 @@ export default function ShowsPage() {
     })
   }
 
+  const handleShare = async () => {
+    const shareData = {
+      title: 'NRG Radio Uganda - Shows',
+      text: 'Check out the amazing shows on NRG Radio Uganda - The Number One Name in Music',
+      url: window.location.href
+    }
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData)
+      } else {
+        // Fallback: Copy to clipboard
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      }
+    } catch (error) {
+      console.error('Error sharing:', error)
+      // Fallback: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      } catch (clipboardError) {
+        console.error('Error copying to clipboard:', clipboardError)
+        alert('Unable to share. Please copy the URL manually.')
+      }
+    }
+  }
+
   const currentShow = getCurrentShow()
   const upcomingShows = getUpcomingShows()
 
@@ -199,7 +227,10 @@ export default function ShowsPage() {
                           <i className="fas fa-play mr-2"></i>
                           Play
                         </button>
-                        <button className="bg-red-800 text-white hover:bg-red-900 px-6 py-3 rounded-lg font-semibold transition-colors">
+                        <button 
+                          onClick={handleShare}
+                          className="bg-red-800 text-white hover:bg-red-900 px-6 py-3 rounded-lg font-semibold transition-colors"
+                        >
                           <i className="fas fa-share mr-2"></i>
                           Share Show
                         </button>

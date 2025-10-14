@@ -20,6 +20,35 @@ export default function EventsPage() {
   const removePlayer = (id: string) => {
     setPlayers(prev => prev.filter(player => player.id !== id))
   }
+
+  const handleShare = async () => {
+    const shareData = {
+      title: 'NRG Radio Uganda - Events',
+      text: 'Check out the amazing events hosted by NRG Radio Uganda - The Number One Name in Music',
+      url: window.location.href
+    }
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData)
+      } else {
+        // Fallback: Copy to clipboard
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      }
+    } catch (error) {
+      console.error('Error sharing:', error)
+      // Fallback: Copy to clipboard
+      try {
+        await navigator.clipboard.writeText(window.location.href)
+        alert('Link copied to clipboard!')
+      } catch (clipboardError) {
+        console.error('Error copying to clipboard:', clipboardError)
+        alert('Unable to share. Please copy the URL manually.')
+      }
+    }
+  }
+
   const events = [
     {
       id: 1,
@@ -206,7 +235,10 @@ export default function EventsPage() {
                     <div className="flex items-center mr-auto">
                       <i className="fa-regular fa-eye mr-1"></i> {event.shares}
                     </div>
-                    <button className="hover:text-white hover:scale-105 transition-all duration-200 group-hover:text-red-400">
+                    <button 
+                      onClick={handleShare}
+                      className="hover:text-white hover:scale-105 transition-all duration-200 group-hover:text-red-400"
+                    >
                       <i className="fa-solid fa-share-nodes mr-1"></i> Share
                     </button>
                   </div>
