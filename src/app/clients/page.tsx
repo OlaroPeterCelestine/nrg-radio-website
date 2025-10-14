@@ -141,15 +141,6 @@ export default function ClientsPage() {
           </div>
         ) : (
           <>
-            {/* Stats */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center bg-gray-900 rounded-full px-6 py-3 border border-gray-800">
-                <i className="fas fa-building text-red-500 mr-3"></i>
-                <span className="text-white font-semibold">
-                  {clients.length} Trusted Partners
-                </span>
-              </div>
-            </div>
 
             {/* Clients Sliding Carousel */}
             <div className="relative overflow-hidden w-full border border-gray-700 rounded-lg">
