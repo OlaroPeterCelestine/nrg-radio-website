@@ -1,20 +1,20 @@
 {
-  "/api/proxy/[...path]/route": "/api/proxy/[...path]",
   "/_not-found/page": "/_not-found",
+  "/api/proxy/[...path]/route": "/api/proxy/[...path]",
   "/api/auth/login/route": "/api/auth/login",
   "/api/test/route": "/api/test",
-  "/contact/page": "/contact",
   "/events/page": "/events",
-  "/clients/page": "/clients",
+  "/contact/page": "/contact",
   "/listen/page": "/listen",
-  "/news/[id]/page": "/news/[id]",
+  "/clients/page": "/clients",
   "/news/page": "/news",
   "/shop/page": "/shop",
-  "/shows/page": "/shows",
   "/page": "/",
   "/login/page": "/login",
+  "/news/[id]/page": "/news/[id]",
+  "/shows/page": "/shows",
   "/watch/page": "/watch",
-  "/video/page": "/video",
+  "/favicon-test/page": "/favicon-test",
   "/stream-test/page": "/stream-test",
-  "/favicon-test/page": "/favicon-test"
+  "/video/page": "/video"
 }

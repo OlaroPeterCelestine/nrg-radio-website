@@ -15,7 +15,7 @@
     "cleanDistDir": true,
     "assetPrefix": "",
     "cacheMaxMemorySize": 52428800,
-    "configOrigin": "default",
+    "configOrigin": "next.config.js",
     "useFileSystemPublicRoutes": true,
     "generateEtags": true,
     "pageExtensions": [
@@ -59,7 +59,26 @@
       "dangerouslyAllowSVG": false,
       "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
       "contentDispositionType": "attachment",
-      "remotePatterns": [],
+      "remotePatterns": [
+        {
+          "protocol": "https",
+          "hostname": "res.cloudinary.com",
+          "port": "",
+          "pathname": "/**"
+        },
+        {
+          "protocol": "https",
+          "hostname": "via.placeholder.com",
+          "port": "",
+          "pathname": "/**"
+        },
+        {
+          "protocol": "https",
+          "hostname": "pub-1a0cc46c23f84b8ebf3f69e9b90b4314.r2.dev",
+          "port": "",
+          "pathname": "/**"
+        }
+      ],
       "unoptimized": false
     },
     "devIndicators": {
@@ -203,6 +222,9 @@
       "devtoolSegmentExplorer": true,
       "browserDebugInfoInTerminal": false,
       "optimizeRouterScrolling": false,
+      "serverComponentsExternalPackages": [
+        "sharp"
+      ],
       "optimizePackageImports": [
         "lucide-react",
         "date-fns",
@@ -286,6 +308,9 @@
     "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight",
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.js",
+    "serverExternalPackages": [
+      "sharp"
+    ],
     "turbopack": {
       "root": "/Users/olaropetercelestine/Desktop/bbs/nrgug/nrg"
     }
