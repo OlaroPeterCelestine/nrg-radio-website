@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { STREAMING_CONFIG, getStreamUrl } from '@/config/streaming'
 
 export const metadata: Metadata = {
@@ -151,9 +152,9 @@ export default function StreamTestPage() {
         {/* Navigation */}
         <div className="mt-8 text-center">
           <div className="space-x-4">
-            <a href="/" className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors">
+            <Link href="/" className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors">
               Go to Home
-            </a>
+            </Link>
             <a href="/listen" className="inline-block bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition-colors">
               Go to Listen
             </a>

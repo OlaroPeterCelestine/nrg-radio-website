@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Favicon Test Page',
@@ -66,9 +67,9 @@ export default function FaviconTestPage() {
           <div className="bg-gray-900 p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">Navigation Test</h2>
             <div className="space-x-4">
-              <a href="/" className="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors">
+              <Link href="/" className="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors">
                 Go to Home
-              </a>
+              </Link>
               <a href="/listen" className="inline-block bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
                 Go to Listen
               </a>

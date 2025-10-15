@@ -389,12 +389,12 @@ export default function WatchPage() {
 
           {/* Today's Schedule */}
           <div className="mt-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Today's Schedule</h2>
+            <h2 className="text-3xl font-bold text-center mb-8">Today&apos;s Schedule</h2>
             {scheduleLoading ? (
               <div className="text-center py-12">
                 <div className="text-gray-400 text-lg mb-4">
                   <i className="fas fa-radio text-4xl mb-4 block"></i>
-                  Loading today's schedule...
+                  Loading today&apos;s schedule...
                 </div>
               </div>
             ) : getTodaysShows().length === 0 ? (
