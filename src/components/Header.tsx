@@ -87,7 +87,7 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
       {/* Main Header */}
       <header>
         {/* Navbar */}
-        <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[80vw] max-w-[1300px] flex items-center justify-between px-4 py-0.5 z-20 border border-gray-800 bg-black/75 rounded-md backdrop-blur-sm">
+        <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95vw] max-w-[1400px] flex items-center justify-between px-3 sm:px-4 py-0.5 z-20 border border-gray-800 bg-black/75 rounded-md backdrop-blur-sm">
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center">
@@ -102,7 +102,7 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center space-x-6 text-gray-300 text-sm font-extrabold">
+          <ul className="hidden lg:flex items-center space-x-6 text-gray-300 text-sm font-extrabold">
             <li className="text-lg font-bold hover:text-red-500 transition-colors">
               <Link href="/">Home</Link>
             </li>
@@ -114,32 +114,41 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
             </li>
           </ul>
 
-          {/* Player Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
+          {/* Player Buttons - Show on mobile and desktop */}
+          <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3">
             <Link
               href="/listen"
-              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-semibold text-sm"
+              className="flex items-center space-x-1 sm:space-x-2 bg-red-600 hover:bg-red-700 text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-lg transition-colors duration-200 font-semibold text-xs sm:text-sm"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
               </svg>
               <span>Listen</span>
             </Link>
             <Link
               href="/watch"
-              className="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-semibold text-sm"
+              className="flex items-center space-x-1 sm:space-x-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-lg transition-colors duration-200 font-semibold text-xs sm:text-sm"
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5l-1 1v1h8v-1l-1-1h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V5h18v11z"/>
               </svg>
               <span>Watch</span>
             </Link>
+            <Link
+              href="/sports-live"
+              className="flex items-center space-x-1 sm:space-x-2 bg-red-600 hover:bg-red-700 text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-lg transition-colors duration-200 font-semibold text-xs sm:text-sm"
+            >
+              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm0-14c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6zm0 10c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/>
+              </svg>
+              <span>Watch Nam Blazers Live 🔥</span>
+            </Link>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle - Only show on very small screens */}
           <button
             id="menu-toggle"
-            className="md:hidden text-white text-2xl focus:outline-none p-2 hover:bg-gray-800 rounded-lg transition-colors"
+            className="lg:hidden text-white text-2xl focus:outline-none p-2 hover:bg-gray-800 rounded-lg transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -173,14 +182,14 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
         {/* Mobile Drawer Overlay */}
         {isMobileMenuOpen && (
           <div
-            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
             onClick={closeMobileMenu}
           />
         )}
 
-        {/* Mobile Drawer */}
+        {/* Mobile Drawer - Only for very small screens */}
         <div
-          className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
+          className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black transform transition-transform duration-300 ease-in-out z-50 lg:hidden ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -285,6 +294,16 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
                     <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5l-1 1v1h8v-1l-1-1h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V5h18v11z"/>
                   </svg>
                   <span>Watch Live</span>
+                </Link>
+                <Link
+                  href="/sports-live"
+                  onClick={closeMobileMenu}
+                  className="w-full flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors duration-200 font-semibold"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm0-14c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6zm0 10c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"/>
+                  </svg>
+                  <span>Watch Nam Blazers Live 🔥</span>
                 </Link>
               </div>
             </nav>

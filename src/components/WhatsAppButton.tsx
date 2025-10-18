@@ -54,7 +54,7 @@ export default function WhatsAppButton() {
     <div className="fixed bottom-24 right-8 z-[100]">
       {/* Inquiry Menu */}
       {isMenuOpen && (
-        <div className="absolute bottom-20 right-0 bg-black rounded-2xl shadow-2xl border border-gray-700 w-64 max-h-80 overflow-y-auto">
+        <div className="absolute bottom-14 right-0 bg-black rounded-2xl shadow-2xl border border-gray-700 w-64 max-h-80 overflow-y-auto">
           <div className="p-4">
             <h3 className="text-lg font-semibold text-white mb-3 text-center">How can we help you?</h3>
             <div className="space-y-2">
@@ -80,18 +80,18 @@ export default function WhatsAppButton() {
         onClick={handleButtonClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 group border-2 border-white ${
-          isMenuOpen ? 'ring-4 ring-green-200' : ''
+        className={`bg-green-500 hover:bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 group border border-white ${
+          isMenuOpen ? 'ring-2 ring-green-200' : ''
         }`}
         title="Select inquiry type"
       >
         {isMenuOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
           <svg
-            className="w-8 h-8"
+            className="w-5 h-5"
             fill="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@ export default function WhatsAppButton() {
       
       {/* Chat Bubble Tooltip */}
       {isHovered && !isMenuOpen && (
-        <div className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-white text-gray-800 text-sm px-4 py-3 rounded-2xl whitespace-nowrap shadow-xl border border-gray-200">
+        <div className="absolute right-14 top-1/2 transform -translate-y-1/2 bg-white text-gray-800 text-sm px-3 py-2 rounded-2xl whitespace-nowrap shadow-xl border border-gray-200">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span className="font-medium">Select inquiry type</span>
