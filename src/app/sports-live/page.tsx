@@ -10,7 +10,7 @@ export default function SportsLivePage() {
   const router = useRouter()
 
   // YouTube video ID extracted from the URL
-  const youtubeVideoId = 'BXhK6d25N_w'
+  const youtubeVideoId = 'ePqK8obAoWQ'
   const embedUrl = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=0&controls=1&showinfo=1&rel=0&modestbranding=1`
 
   // Simulate live status check
