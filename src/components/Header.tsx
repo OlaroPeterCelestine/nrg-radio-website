@@ -269,9 +269,9 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
                 <Link
                   href="/listen"
                   onClick={closeMobileMenu}
-                  className="w-full flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors duration-200 font-semibold"
+                  className="w-full flex items-center justify-center space-x-3 bg-red-600 hover:bg-red-700 text-white px-6 py-4 rounded-xl transition-colors duration-200 font-bold text-lg"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
                   <span>Listen Live</span>
@@ -279,9 +279,9 @@ export default function Header({ createPlayer }: HeaderProps = {}) {
                 <Link
                   href="/watch"
                   onClick={closeMobileMenu}
-                  className="w-full flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 text-white px-4 py-3 rounded-lg transition-colors duration-200 font-semibold"
+                  className="w-full flex items-center justify-center space-x-3 bg-gray-700 hover:bg-gray-600 text-white px-6 py-4 rounded-xl transition-colors duration-200 font-bold text-lg"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5l-1 1v1h8v-1l-1-1h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H3V5h18v11z"/>
                   </svg>
                   <span>Watch Live</span>
